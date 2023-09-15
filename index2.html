@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: grey;
+
+        }
+        .wrapper{
+            display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top:250px;
+        transition: 0.5 ease-in;
+        }
+
+        .flask{
+       
+         
+        }
+        #time{
+            font-size: 60px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="flask">
+            <div id="time" class="clock">12:00:00</div>
+        </div>
+    </div>
+
+    <script>
+
+        setInterval(() => {
+        const time = document.querySelector('#time');
+
+        let date = new Date();
+
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        let day_night = "PM"
+        if(hours > 12){
+            let day_night = "AM"
+            hours = hours - 12;
+        }
+        if(hours < 12){
+            hours = 0 + hours;
+        }
+        if(hours < 10){
+            minutes = 0 + minutes;
+
+        }
+        if(seconds < 10){
+            seconds = 0 + seconds;
+        }
+
+;
+
+
+        time.textContent = hours + ":" + minutes + ":" + seconds;
+
+    });
+    </script>
+</body>
+</html>

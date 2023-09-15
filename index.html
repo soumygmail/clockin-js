@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: rgb(21, 21, 20);
+        }
+        .wrapper{
+            display: flex;
+            justify-content: center;
+            padding-top: 250px;
+           
+        }
+        .clock{
+         background: linear-gradient(to right,red,green,yellow);
+        }
+        .para{
+            font-size: 60px;
+            color: #fff;
+            background: linear-gradient(to right,red,green,yellow);
+            padding: 20px;
+           
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="clock">
+            <div id="time" class="para">12:00:00</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+       setInterval(() => {
+        
+       
+        const time = document.querySelector('#time');
+        let date = new Date();
+
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+         let day_night = "PM";
+         if(hours > 12){
+            let day_night = "AM";
+            hours = hours - 12;
+         }
+         if(hours < 10){
+            hours = "0" + hours;
+         }
+         if(minutes < 10){
+            minutes = "0" + minutes;
+         }
+         if(seconds < 10){
+            seconds = "0" + seconds;
+         }
+        time.textContent = hours + ":" + minutes + ":" + seconds;
+
+    });
+    </script>
+</body>
+</html>

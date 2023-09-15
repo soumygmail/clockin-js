@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <style>
+    /*  *{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+
+      .container{
+        background-color: rgb(24, 24, 49);
+        height: 100vh;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        
+      }
+      #timer{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+      #timer p{
+        position: relative;
+        display: inline-block;
+        color: #fff;
+        z-index:-1;
+        font-size: 48px;
+        margin-bottom: 120px;
+      }
+      #timer p::before{
+       content: '';
+       position: absolute;
+       width: 300px;
+       height: 300px;
+       background-color: #151538;
+       z-index: -1;
+       border-radius: 50%;
+       left: -20%;
+       top: -250%;
+       animation-name: shine;
+       animation-duration: 5s;
+       animation-delay: 2s;
+       animation-iteration-count: infinite;
+      }
+      button{
+        background-color: #222242;
+        padding: 10px 38px;
+        margin-top: 30px;
+        border-radius: 28px;
+        transition: all .2s ease;
+        color: #fff;
+        outline: 0;
+      }
+      button:not(:last-child){
+        margin-right: 20px;
+      }
+      button:focus{
+        border-color: #f68400;
+        color: #f6B400;
+        box-shadow: 0px 4px 27px -12px #f6b400;
+      }
+
+      @keyframes shine{
+        0%{
+            box-shadow: 0px 0px 32px -12px rgba(246,180,0,0.5)
+        }
+        50%{
+            box-shadow: 0px 0px 32px -12px rgba(33, 151, 92, 0.5)
+        }
+        60%{
+            box-shadow: 0px 0px 32px -12px rgba(36, 69, 167, 0.5)
+        }
+        70%{
+            box-shadow: 0px 0px 32px -12px rgba(170, 32, 34, 0.5)
+        }
+        80%{
+            box-shadow: 0px 0px 32px -12px rgba(32, 182, 65, 0.5)
+        }
+        90%{
+            box-shadow: 0px 0px 32px -12px rgba(189, 43, 128, 0.5)
+        }
+        100%{
+            box-shadow: 0px 0px 32px -12px rgba(146, 216, 25, 0.5)
+        }
+        
+
+      }*/
+    </style>
+</head>
+<body>
+    <center>
+        <div id="timer">
+          <span id="hours">00:</span>
+          <span id="mins">00:</span>
+          <span id="seconds">00</span>  
+        </div>
+        <div id="controls">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+        </div>
+      </center>
+
+
+   <script>
+
+var hours =0;
+var mins =0;
+var seconds =0;
+
+$('#start').click(function(){
+      startTimer();
+});
+
+$('#stop').click(function(){
+      clearTimeout(timex);
+});
+
+$('#reset').click(function(){
+      hours =0;      mins =0;      seconds =0;
+  $('#hours','#mins').html('00:');
+  $('#seconds').html('00');
+});
+
+function startTimer(){
+  timex = setTimeout(function(){
+      seconds++;
+    if(seconds >59){seconds=0;mins++;
+       if(mins>59) {
+       mins=0;hours++;
+         if(hours <10) {$("#hours").text('0'+hours+':')} else $("#hours").text(hours+':');
+        }
+                       
+    if(mins<10){                     
+      $("#mins").text('0'+mins+':');}       
+       else $("#mins").text(mins+':');
+                   }    
+    if(seconds <10) {
+      $("#seconds").text('0'+seconds);} else {
+      $("#seconds").text(seconds);
+      }
+     
+    
+      startTimer();
+  },1000);
+}
+</script>
+</body>
+</html>

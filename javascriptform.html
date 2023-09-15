@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: black;
+            color: white;
+            background-repeat: no-repeat;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100vw;
+            
+        }
+        .container{
+            background-color: darkblue;
+            border-radius: 10px;
+            box-shadow: 0 0 10px greenyellow;
+            overflow: hidden;
+            width: calc(100vw - 65vw);
+            max-width: 100%;
+            padding: 20px;
+        }
+        .header{
+            padding: 30px 0;
+            background: yellow;
+            color: black;
+            
+        }
+        .form-control input{
+           width: 100%;
+           border: 2px solid #f0f0f0;
+           border-radius: 5px;
+           display: block;
+           font-family: sans-serif;
+           padding: 5px;
+        }
+
+        .form-control input:focus{
+            outline: 0;
+            border-color: #777;
+        }
+        .form-control{
+            margin: 20px;
+        }
+        .form-control .success input{
+         border-color: #2ecc71;
+        }
+        .form-control .error input {
+            border-color: #e74c3c;
+        }
+
+        .form .btn{
+            display: block;
+            font-family: sans-serif;
+            font-size: 16px;
+            padding: 10px 0;
+            margin-top: 20px;
+            width: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 1s ease;
+        }
+
+        .form .btn:hover{
+            background: linear-gradient(to right,#74ebd5,#9face6);
+        }
+
+        @media(max-width:998px){
+            .container{
+          width:calc(100vw - 35vw);
+          max-width: 100%;
+        }
+    }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>REGISTRATION FORM</h2>
+
+        </div>
+        <form class="form" id="form">
+         <div class="form-control">
+            <label>Username:</label>
+            <input type="text" name="" id="username" placeholder="Enter your name" autocomplete="off">
+            <small>Error msg</small>
+         </div>
+         <div class="form-control">
+            <label>Email:</label>
+            <input type="email" name="" id="email" placeholder="Enter your email">
+            <small>Error msg</small>
+         </div>
+         <div class="form-control">
+            <label>Phone Number:</label>
+            <input type="number" name="" id="phone" placeholder="Enter your phonenumber">
+            <small>Error msg</small>
+         </div>
+         <div class="form-control">
+            <label>Password:</label>
+            <input type="password" name="" id="password" placeholder="Enter your password">
+            <small>Error msg</small>
+         </div>
+         <div class="form-control">
+            <label>Confirm-Password:</label>
+            <input type="password" name="" id="cpassword" placeholder="Enter your confirm password">
+            <small>Error msg</small>
+         </div>
+         <input type="submit" value="Submit" class="btn">
+        </form>
+    </div>
+
+
+
+
+    <script>
+        const form = document.getElementById('form');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const phone = document.getElementById('phone');
+        const password = document.getElementById('password');
+        const cpassword = document.getElementById('cpassword');
+
+
+        // add event
+
+
+        form.addEventListener('submit', (event) => {
+             
+            event.preventDefault();
+            validate();
+        })
+
+        // more email validate
+        const isEmail = (emailVal) => {
+         var atSymbol = emailVal.indexOf("@");
+         if(atSymbol < 1) return false;
+         var dot = emailVal.indexOf('.');
+         if(dot < atSymbol + 2) return false;
+         if(dot === emailVal.length - 1) return false;
+         return true;
+
+
+
+        }
+
+
+        // define validate function.
+
+
+        const validate = () => {
+            const usernameVal = username.value.trim();
+            const emailVal = email.value.trim();
+            const phoneVal = phone.value.trim();
+            const passwordVal = password.value.trim();
+            const cpasswordVal = cpassword.value.trim();
+
+
+  // validate username
+
+  if(usernameVal === ""){
+    setErrorMsg(username, 'username  cannot be blank');
+
+  }else if(username.length < 2){
+    setErrorMsg(username, 'username min 3 characters');
+
+  }else{
+    setSuccessMsg(username);
+
+  }
+
+  if(emailVal === ""){
+    setErrorMsg(email, 'email  cannot be blank');
+
+  }else if(!isEmail(emailVal)){
+    setErrorMsg(email, 'Not a valid Email');
+
+  }else{
+    setSuccessMsg(email);
+    
+  }
+
+        }
+
+        function setErrorMsg(input, errormsgs) {
+
+            const formControl = input.parentElement;
+            const small = formControl.querySelector('small');
+            formControl.className = "form-control error";
+            small.innerText = errormsgs;
+        }
+
+
+        function setSuccessMsg(input) {
+       
+            const formControl = input.parentElement;
+            formControl.className = "form-control success";
+             
+        }
+
+
+    </script>
+</body>
+</html>
